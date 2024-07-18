@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04, windows-2019, macos-12]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
 
       - name: Checkout
@@ -61,24 +61,23 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {python: '3.8', os: macos-12}
-          - {python: '3.9', os: macos-12}
-          - {python: '3.10', os: macos-12}
-          - {python: '3.11', os: macos-12}
-          - {python: '3.12', os: macos-12}
+          - {python: '3.8', os: macos-latest}
+          - {python: '3.9', os: macos-latest}
+          - {python: '3.10', os: macos-latest}
+          - {python: '3.11', os: macos-latest}
+          - {python: '3.12', os: macos-latest}
 
-          - {python: '3.8', os: ubuntu-20.04}
-          - {python: '3.9', os: ubuntu-20.04}
-          - {python: '3.10', os: ubuntu-20.04}
-          - {python: '3.11', os: ubuntu-20.04}
-          - {python: '3.12', os: ubuntu-20.04}
+          - {python: '3.8', os: ubuntu-latest}
+          - {python: '3.9', os: ubuntu-latest}
+          - {python: '3.10', os: ubuntu-latest}
+          - {python: '3.11', os: ubuntu-latest}
+          - {python: '3.12', os: ubuntu-latest}
 
-          - {python: '3.8', os: windows-2019}
-          - {python: '3.9', os: windows-2019}
-
-          - {python: '3.10', os: windows-2019}
-          - {python: '3.11', os: windows-2019}
-          - {python: '3.12', os: windows-2019}
+          - {python: '3.8', os: windows-latest}
+          - {python: '3.9', os: windows-latest}
+          - {python: '3.10', os: windows-latest}
+          - {python: '3.11', os: windows-latest}
+          - {python: '3.12', os: windows-latest}
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -106,7 +105,7 @@ jobs:
       # https://github.com/RaRe-Technologies/gensim/issues/3489
       #
       - name: Install newest numpy (windows py3.10 only)
-        if: ${{ (matrix.os == 'windows-2019') && (matrix.python == '3.10') }}
+        if: ${{ (matrix.os == 'windows-latest') && (matrix.python == '3.10') }}
         run: |
           python -m pip uninstall --yes oldest-supported-numpy
           python -m pip install --upgrade numpy
